@@ -1,0 +1,176 @@
+<% include ./partials/header.ejs %>
+<link rel="stylesheet" href="../../show.css">
+<!-- 
+<form  action="/upload/<%= userId %>/<%= semId %>" method="POST" enctype="multipart/form-data">
+  <div class="custom-file mb-3">
+    <input type="file" name="file" id="file" class="custom-file-input">
+    <label for="file" class="custom-file-label" style="width:20%; margin-top: 30px; margin-left: 20px;"></label>
+  </div>
+  <input type="submit" value="Submit" class="btn btn-primary btn-block" style="width:10%; margin-top: 40px; margin-left:20px;">
+</form>
+<form action="/files/copy/<%= userId %>/<%= semId %>" id="id1" method="POST"></form>
+    <%var i=1; %>
+    <% if(files){ %>
+      <% files.forEach(function(file) { %>
+      <div class="card card-body mb-3">
+        <% if(file.isImage) { %>
+        <input type="checkbox" name="file[<%= i %>] " form="id1" value="<%= file._id %>"><a href="/image/<%= file.filename %>"
+          target="_blank"><%= file.filename%></a>
+        <% } else { %>
+          <input type="checkbox" name="file[<%= i %>] " form="id1" value="<%= file._id %>"><a href="/file/<%= file.filename %>" target="_blank"><%= file.filename %></a>
+        <% }i++;  %>
+        <form method="POST"  action="/delete/<%= userId %>/<%= semId %>/<%= file._id %>?_method=DELETE">
+          <button   class="btn btn-danger btn-block mt-4" style="width:20%;" >Delete</button>
+        </form>
+      </div>
+      <% }) %>
+    <% } else { %>
+      <p>No files to show</p>
+    <% } %>
+
+    <table border="2px">
+      <tr>
+        <th></th>
+        <th>Semester</th>
+        <th>Subject</th>
+        <th>Section</th>
+      </tr>
+      <% if(options){ %>
+        <% var i=1; %>
+        <% options.forEach((option)=>{ %>
+         <% if(option._id != semId){ %>
+          <tr>
+              <td><input type="checkbox" name="sem[<%= i %>]" value="<%= option._id %>" form="id1"></td>
+             <td><%= option.sem_no %></td>
+             <td><%= option.subject %></td>
+             <td><%= option.section %></td>
+           </tr> 
+         <% } %>
+        
+    
+        <%i++; }); %>
+      <% } 
+      else { %>
+        <li>Nothing to show</li>       
+      <%}%>
+
+    </table>
+    <button form="id1">Copy</button>
+  
+
+
+
+
+<form action="/options/<%= userId %>" method="GET">
+  <button>BACK</a></button> -->
+<!-- </form> -->
+
+
+<div class="ui main text container segment ">
+  <div class="ui huge header">Choose file</div>
+  <form class="ui form" action="/upload/<%= userId %>/<%= semId %>/<%= fno %>" method="POST" enctype="multipart/form-data">
+    <div class="input-group mb-3">
+      <div class="custom-file">
+        <input required type="file" name="file" class="custom-file-input" id="inputGroupFile02">
+        <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose
+          file</label>
+      </div>
+
+
+
+    </div>
+    <button   class="btn btn-primary btn-sm">Upload</button>
+
+
+  </form>
+</div>
+
+<div class="ui main text container segment ">
+  <div class="ui huge header">FILES<button class="btn btn-primary btn-md togBut" style="margin-left: 75%; margin-top: 0.5px;">Select</button></div>
+
+  <form class="ui form" action="/files/copy/<%= userId %>/<%= semId %>/<%= fno %>" id="id1" method="POST"></form>
+
+  <%var i=1; %>
+  <% if(files){ %>
+  <% files.forEach(function(file) { %>
+
+  <% if(file.isImage) { %>
+  <div class="field">
+    <input class="iToggle toggle" type="checkbox" name="file[<%= i %>] " form="id1" value="<%= file._id %>"><a
+      href="/image/<%= file.filename %>" target="_blank"><%= file.filename%></a>
+  </div>
+
+  <% } else { %>
+  <div class="field">
+    <input class="iToggle toggle" type="checkbox" name="file[<%= i %>] " form="id1" value="<%= file._id %>"><a
+      href="/file/<%= file.filename %>" target="_blank"><%= file.filename %></a>
+  </div>
+
+  <% }i++;  %>
+  <form class="ui form" method="POST" action="/delete/<%= userId %>/<%= semId %>/<%= fno %>/<%= file._id %>?_method=DELETE">
+    <button class="btn btn-danger btn-block mt-2" style="width:20%;">Delete</button>
+    <hr>
+  </form>
+
+  <% }) %>
+  <button class="btn btn-primary btn-sm cbutton toggle" style="margin-left: 90%;">Copy</button>
+  <% } else { %>
+  <p>No files to show</p>
+  <% } %>
+</div>
+<div class="ui main text container segment ">
+  <div class="ui huge header">Copy To</div>
+  <table class="table table-sm table-responsive-sm">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">SEMESTER</th>
+        <th scope="col">SUBJECT</th>
+        <th scope="col">SECTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <% if(options){ %>
+        <% var i=1; %>
+        <% options.forEach((option)=>{ %>
+         <% if(option._id != semId){ %>
+          <tr>
+              <th scope="row"><input type="checkbox" name="sem[<%= i %>]" value="<%= option._id %>" form="id1"></th>
+             <td><%= option.sem_no %></td>
+             <td><%= option.subject %></td>
+             <td><%= option.section %></td>
+           </tr> 
+         <% } %>
+        
+    
+        <%i++; }); %>
+      <% } 
+      else { %>
+        <li>Nothing to show</li>       
+      <%}%>
+     
+    </tbody>
+  </table>
+  <button form="id1">Copy</button>
+  <form style="display: inline;" action="/options/<%= userId %>" method="GET">
+    <button>BACK</a></button> 
+  </form> 
+</div>
+
+
+
+
+
+<script>
+  $('#inputGroupFile02').on('change', function () {
+    //get the file name
+    var fileName = $(this).val();
+    var cleanFileName = fileName.replace('C:\\fakepath\\', " ");
+    //replace the "Choose a file" label
+    $(this).next('.custom-file-label').html(cleanFileName);
+  })
+</script>
+
+<script type="text/javascript"  src="../../public/show.js"></script>
+<% include ./partials/footer.ejs %>

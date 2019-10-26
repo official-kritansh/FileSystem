@@ -1,0 +1,11 @@
+.toggle{
+    display: none;
+}
+/* button:focus { outline: none;
+box-shadow: none; } */
+.btn-primary:hover,.btn-primary:focus,.btn-primary:active, 
+.btn-primary:active:focus:not(:disabled):not(.disabled),
+.btn:focus, .btn:active, .btn:hover{
+    box-shadow: none!important;
+    outline: 0;
+}

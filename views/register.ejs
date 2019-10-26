@@ -1,0 +1,22 @@
+<% include ./partials/header.ejs %>
+<link rel="stylesheet" href="../userForm.css">
+<!-- <form action="/register" method="POST">
+    <input type="text" name="username" placeholder="username">
+    <input type="text" name="password" placeholder="password">
+    <button>submit</button>
+</form> -->
+<div class="ui main text container segment ">
+    <div class="ui huge header">SIGN UP</div>
+    <form class="ui form"  action="/register" method="POST">
+        <div class="field">
+            <label>Username</label>
+            <input required type="text"  name="username" placeholder="username">
+        </div>
+        <div class="field">
+                <label>Password</label>
+                <input required type="password" name="password" placeholder="password">
+        </div >
+        <input  class=" field btn btn-primary btn-md" type="submit">
+    </form>
+</div>
+<% include ./partials/footer.ejs %>

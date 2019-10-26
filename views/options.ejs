@@ -1,0 +1,60 @@
+<% include ./partials/header.ejs %>
+<!-- <ol>
+    <% if(options){ %>
+        <% options.forEach((option)=>{ %>
+            <li>
+                    <ul>
+                            <li>semester--<%= option.sem_no %></li>
+                            <li>section--<%= option.section %></li>
+                            <li>subject--<%= option.subject %></li>
+                            <a href="/files/<%= userId %>/<%= option._id %>">See Files</a>
+                        </ul>
+
+            </li>
+    
+        <% }); %>
+ <% } 
+     else { %>
+        <li>Nothing to show</li>       
+    <%}%>
+        
+    
+</ol> -->
+
+<table  class="table table-striped" style="margin:40px 0;text-align: center;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">SEMESTER</th>
+            <th scope="col">SECTION</th>
+            <th scope="col">SUBJECT</th>
+            <th scope="col">FILES</th>
+
+          </tr>
+        </thead>
+        <tbody>
+                <% if(options){ %>
+                    <% options.forEach((option,i)=>{ %>
+                        <tr >
+                            <th scope="row"><%= ++i %></th>
+                            <td ><%= option.sem_no %></td>
+                            <td><%= option.section %></td>
+                            <td><%= option.subject %></td>
+                            <td><a href="/folders/<%= userId %>/<%= option._id %>" style="color:white;"><button class="btn btn-sm btn-primary">Files</button></a></td>
+                        </tr>
+                    <% }); %>
+                <% } 
+                else { %>
+                    <tr>
+                            <th scope="row">NULL</th>
+                            <td>NULL</td>
+                            <td>NULL</td>
+                            <td>NULL</td>
+                            <td>NULL</td>
+                        </tr>
+
+                <%}%>
+        </tbody>
+      </table>
+
+<% include ./partials/footer.ejs %>

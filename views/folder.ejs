@@ -1,0 +1,71 @@
+<% include ./partials/header.ejs %>
+<link rel="stylesheet" href="../../folder.css">
+
+<form action="/folder/copy/<%= userId %>/<%= semId %>" method="POST" id="id1"></form>
+<!-- <ul>
+    <%var i;
+    for(i=1;i<=25;i++){ %>
+        <input form="id1" type="checkbox" name="folder[<%= i %>]" value="<%=i%>"><li><a href="/files/<%= userId  %>/<%= semId %>/<%= i %>"><%= i %></a></li>
+   <% } %>
+    
+</ul> -->
+<div class="ui main text container segment ">
+  <div class="ui huge header">Copy To</div>
+  <table class="table table-sm">
+    <%var i;
+      for(i=1;i<=25;i++){ %>
+    <tr>
+      <th scope="row"><input form="id1" type="checkbox" name="folder[<%= i %>]" value="<%=i%>">
+        <a href="/files/<%= userId  %>/<%= semId %>/<%= i %>"><%= i %></a>
+      </th>
+      <td>Folder</td>
+
+    </tr>
+    <% } %>
+  </table>
+</div>
+
+
+
+
+<div class="ui main text container segment ">
+  <div class="ui huge header">Copy To</div>
+  <table class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">SEMESTER</th>
+        <th scope="col">SUBJECT</th>
+        <th scope="col">SECTION</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% if(options){ %>
+      <% var i=1; %>
+      <% options.forEach((option)=>{ %>
+      <% if(option._id != semId){ %>
+      <tr>
+        <th scope="row"><input type="checkbox" name="sem[<%= i %>]" value="<%= option._id %>" form="id1"></th>
+        <td><%= option.sem_no %></td>
+        <td><%= option.subject %></td>
+        <td><%= option.section %></td>
+      </tr>
+      <% } %>
+
+
+      <%i++; }); %>
+      <% } 
+      else { %>
+      <li>Nothing to show</li>
+      <%}%>
+     
+    </tbody>
+  </table>
+  <button form="id1">Copy</button>
+  <form style="display: inline;" action="/options/<%= userId %>" method="GET">
+      <button>BACK</a></button>
+      </form>
+</div>
+
+<% include ./partials/footer.ejs %>

@@ -1,0 +1,20 @@
+<% include ./partials/header.ejs %>
+   <link rel="stylesheet" href="../userForm.css">
+    
+
+<div class="ui main text container segment ">
+    <div class="ui huge header">LOGIN</div>
+    <form class="ui form"  action="/login" method="POST">
+        <div class="field">
+            <label>Username</label>
+            <input required type="text"  name="username" placeholder="username">
+        </div>
+        <div class="field">
+                <label>Password</label>
+                <input required type="password" name="password" placeholder="password">
+        </div >
+        <input  class=" field btn btn-primary btn-md" type="submit">
+    </form>
+</div>
+
+<% include ./partials/footer.ejs %>

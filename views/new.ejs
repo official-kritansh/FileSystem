@@ -1,0 +1,36 @@
+<% include ./partials/header.ejs %>
+<link rel="stylesheet" href="../userForm.css">
+<!-- <form action="/info/<%= userId %> " method="POST">
+    <input type="text" name="semester" placeholder="semester">
+    <input type="text" name="section" placeholder="section">
+    <input type="text" name="subject" placeholder="subject">
+    <button>Add</button>
+</form>
+<form action="/options/<%= userId %>" method="GET">
+    <button>Submit</button>
+</form> -->
+<form action="/options/<%= userId %>" id="id1" method="GET">
+</form>
+
+<div class="ui main text container segment " style="height: 60%;">
+    <div class="ui huge header">CLASS DETAILS</div>
+    <form class="ui form"  action="/info/<%= userId %> " method="POST">
+        <div class="field">
+            <label>SEMESTER</label>
+            <input required type="text"  name="semester" placeholder="semester">
+        </div>
+        <div class="field">
+                <label>SECTION</label>
+                <input required  type="text" name="section" placeholder="section">
+        </div >
+        <div class="field">
+            <label>SUBJECT</label>
+            <input required type="text" name="subject" placeholder="subject">
+        </div >
+        <button class="btn btn-md btn-success ">ADD</button>
+        <button form="id1" class="btn btn-md btn-primary " style="margin-left:28em;">Submit</button>
+    </form>
+</div>
+
+<% include ./partials/footer.ejs %>
+
